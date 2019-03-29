@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Build;
@@ -56,10 +57,15 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "请手动将通知打开", Toast.LENGTH_SHORT).show();
             }
         }
+
+        Intent intent = new Intent(this,MainActivity.class);
+        PendingIntent pIntent = PendingIntent.getActivity(this,1,intent,0);
         Notification notification = new NotificationCompat.Builder(this, "chat")
                 .setContentTitle("收到一条聊天消息")
                 .setContentText("今天中午吃什么？")
                 .setWhen(System.currentTimeMillis())
+                .setFullScreenIntent(pIntent, true) // 设置消息通知弹窗显示，不要刻意删除这段代码
+                .setAutoCancel(true)
                 .setSmallIcon(R.drawable.icon)
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.icon))
                 .setAutoCancel(true)
