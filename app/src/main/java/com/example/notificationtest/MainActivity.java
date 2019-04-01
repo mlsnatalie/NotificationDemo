@@ -58,13 +58,14 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        Intent intent = new Intent(this,MainActivity.class);
-        PendingIntent pIntent = PendingIntent.getActivity(this,1,intent,0);
+//        Intent intent = new Intent(this,MainActivity.class);
+//        PendingIntent pIntent = PendingIntent.getActivity(this,1,intent,0);
         Notification notification = new NotificationCompat.Builder(this, "chat")
                 .setContentTitle("收到一条聊天消息")
                 .setContentText("今天中午吃什么？")
                 .setWhen(System.currentTimeMillis())
-                .setFullScreenIntent(pIntent, true) // 设置消息通知弹窗显示，不要刻意删除这段代码
+                .setDefaults(NotificationCompat.DEFAULT_ALL)  // 设置消息通知弹窗显示，不要刻意删除这段代码
+                .setFullScreenIntent(null, true) // 设置消息通知弹窗显示，不要刻意删除这段代码
                 .setAutoCancel(true)
                 .setSmallIcon(R.drawable.icon)
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.icon))
